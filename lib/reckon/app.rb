@@ -25,7 +25,7 @@ module Reckon
     end
 
     def learn_from(ledger)
-      LedgerParser.new(ledger).entries.each do |entry|
+      LedgerParser.new(ledger, self.options).entries.each do |entry|
         entry[:accounts].each do |account|
           learn_about_account( account[:name],
                               [entry[:desc], account[:amount]].join(" ") ) unless account[:name] == options[:bank_account]
